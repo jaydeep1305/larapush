@@ -2,7 +2,7 @@
 
 /**
  *
- * @link       https://larapush.com
+ * @link       https://alarapush.com
  * @since      1.0.0
  *
  * The public-facing functionality of the plugin.
@@ -10,11 +10,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Unlimited_Push_Notifications_By_Larapush
- * @subpackage Unlimited_Push_Notifications_By_Larapush/public
- * @author     LaraPush <support@larapush.com>
+ * @package    Unlimited_Push_Notifications_By_Aalarapush
+ * @subpackage Unlimited_Push_Notifications_By_Aalarapush/public
+ * @author     LaraPush <support@alarapush.com>
  */
-class Unlimited_Push_Notifications_By_Larapush_Public
+class Unlimited_Push_Notifications_By_Aalarapush_Public
 {
     /**
      * The ID of this plugin.
@@ -60,9 +60,9 @@ class Unlimited_Push_Notifications_By_Larapush_Public
         # When AMP is not Enabled, add website code else add AMP code
         if (!(function_exists('is_amp_endpoint') && is_amp_endpoint())) {
             # Check if token collection is enabled
-            if (get_option('unlimited_push_notifications_by_larapush_enable_push_notifications', false)) {
+            if (get_option('unlimited_push_notifications_by_alarapush_enable_push_notifications', false)) {
                 # Add the code to header
-                $code = get_option('unlimited_push_notifications_by_larapush_codes', []);
+                $code = get_option('unlimited_push_notifications_by_alarapush_codes', []);
                 if (
                     array_key_exists('code_to_be_added_in_header_data', $code) &&
                     array_key_exists('script_url', $code['code_to_be_added_in_header_data'])
@@ -72,7 +72,7 @@ class Unlimited_Push_Notifications_By_Larapush_Public
                     $pwa_header_code = $code['code_to_be_added_in_header_data']['pwa_header_code'] ?? '';
 
                     // If PWA is enabled
-                    $pwa_ios_enabled = get_option('unlimited_push_notifications_by_larapush_configure_pwa_ios', false);
+                    $pwa_ios_enabled = get_option('unlimited_push_notifications_by_alarapush_configure_pwa_ios', false);
 
                     include_once plugin_dir_path(__FILE__) . 'partials/web-header.php';
                 }
@@ -89,8 +89,8 @@ class Unlimited_Push_Notifications_By_Larapush_Public
      */
     public function amp_post_template_head()
     {
-        $amp_enabled = get_option('unlimited_push_notifications_by_larapush_add_code_for_amp', false);
-        $code = get_option('unlimited_push_notifications_by_larapush_codes', []);
+        $amp_enabled = get_option('unlimited_push_notifications_by_alarapush_add_code_for_amp', false);
+        $code = get_option('unlimited_push_notifications_by_alarapush_codes', []);
 
         # Check if amp is enabled
         if ($amp_enabled) {
@@ -105,9 +105,9 @@ class Unlimited_Push_Notifications_By_Larapush_Public
      */
     public function ampforwp_body_beginning()
     {
-        $amp_enabled = get_option('unlimited_push_notifications_by_larapush_add_code_for_amp', false);
-        $locations = get_option('unlimited_push_notifications_by_larapush_amp_code_location', []);
-        $code = get_option('unlimited_push_notifications_by_larapush_codes', []);
+        $amp_enabled = get_option('unlimited_push_notifications_by_alarapush_add_code_for_amp', false);
+        $locations = get_option('unlimited_push_notifications_by_alarapush_amp_code_location', []);
+        $code = get_option('unlimited_push_notifications_by_alarapush_codes', []);
 
         # Check if amp is enabled
         if ($amp_enabled) {
@@ -128,9 +128,9 @@ class Unlimited_Push_Notifications_By_Larapush_Public
      */
     public function amp_post_template_css()
     {
-        $amp_enabled = get_option('unlimited_push_notifications_by_larapush_add_code_for_amp', false);
-        $locations = get_option('unlimited_push_notifications_by_larapush_amp_code_location', []);
-        $code = get_option('unlimited_push_notifications_by_larapush_codes', []);
+        $amp_enabled = get_option('unlimited_push_notifications_by_alarapush_add_code_for_amp', false);
+        $locations = get_option('unlimited_push_notifications_by_alarapush_amp_code_location', []);
+        $code = get_option('unlimited_push_notifications_by_alarapush_codes', []);
 
         # Check if amp is enabled
         if ($amp_enabled) {
@@ -153,9 +153,9 @@ class Unlimited_Push_Notifications_By_Larapush_Public
      */
     public function amp_post_template_footer()
     {
-        $amp_enabled = get_option('unlimited_push_notifications_by_larapush_add_code_for_amp', false);
-        $locations = get_option('unlimited_push_notifications_by_larapush_amp_code_location', []);
-        $code = get_option('unlimited_push_notifications_by_larapush_codes', []);
+        $amp_enabled = get_option('unlimited_push_notifications_by_alarapush_add_code_for_amp', false);
+        $locations = get_option('unlimited_push_notifications_by_alarapush_amp_code_location', []);
+        $code = get_option('unlimited_push_notifications_by_alarapush_codes', []);
 
         # Check if amp is enabled
         if ($amp_enabled) {
@@ -179,9 +179,9 @@ class Unlimited_Push_Notifications_By_Larapush_Public
             return $content;
         }
 
-        $amp_enabled = get_option('unlimited_push_notifications_by_larapush_add_code_for_amp', false);
-        $locations = get_option('unlimited_push_notifications_by_larapush_amp_code_location', []);
-        $code = get_option('unlimited_push_notifications_by_larapush_codes', []);
+        $amp_enabled = get_option('unlimited_push_notifications_by_alarapush_add_code_for_amp', false);
+        $locations = get_option('unlimited_push_notifications_by_alarapush_amp_code_location', []);
+        $code = get_option('unlimited_push_notifications_by_alarapush_codes', []);
 
         # Check if amp is enabled
         if ($amp_enabled) {
@@ -208,7 +208,7 @@ class Unlimited_Push_Notifications_By_Larapush_Public
      */
     private function get_widget_code()
     {
-        $code = get_option('unlimited_push_notifications_by_larapush_codes', []);
+        $code = get_option('unlimited_push_notifications_by_alarapush_codes', []);
         if (
             array_key_exists('amp_code_widget_data', $code) &&
             array_key_exists('amp_button_text', $code['amp_code_widget_data']) &&
@@ -239,7 +239,7 @@ class Unlimited_Push_Notifications_By_Larapush_Public
             isset($_SERVER['REQUEST_URI']) &&
             strpos(
                 $_SERVER['REQUEST_URI'],
-                '/wp-content/plugins/push-notifications-by-larapush/larapush-reconfigure'
+                '/wp-content/plugins/push-notifications-by-alarapush/alarapush-reconfigure'
             ) !== false
         ) {
             global $wp_query;
@@ -247,13 +247,13 @@ class Unlimited_Push_Notifications_By_Larapush_Public
             status_header(404);
             nocache_headers();
 
-            $email = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::decode(
-                get_option('unlimited_push_notifications_by_larapush_panel_email', '')
+            $email = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::decode(
+                get_option('unlimited_push_notifications_by_alarapush_panel_email', '')
             );
 
             if (isset($_GET['email']) && $_GET['email'] == $email) {
                 try {
-                    $code = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::codeIntegration();
+                    $code = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::codeIntegration();
                     if ($code) {
                         echo json_encode([
                             'status' => 'success'

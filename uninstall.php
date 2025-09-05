@@ -19,10 +19,10 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       https://larapush.com
+ * @link       https://alarapush.com
  * @since      1.0.0
  *
- * @package    Unlimited_Push_Notifications_By_Larapush
+ * @package    Unlimited_Push_Notifications_By_Aalarapush
  */
 
 // If uninstall not called from WordPress, then exit.

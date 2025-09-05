@@ -2,18 +2,18 @@
 /**
  * Register all actions and filters for the plugin.
  *
- * @link       https://larapush.com
+ * @link       https://alarapush.com
  * @since      1.0.0
  *
  * Maintain a list of all hooks that are registered throughout
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Unlimited_Push_Notifications_By_Larapush
- * @subpackage Unlimited_Push_Notifications_By_Larapush/includes
- * @author     LaraPush <support@larapush.com>
+ * @package    Unlimited_Push_Notifications_By_Aalarapush
+ * @subpackage Unlimited_Push_Notifications_By_Aalarapush/includes
+ * @author     LaraPush <support@alarapush.com>
  */
-class Unlimited_Push_Notifications_By_Larapush_Loader
+class Unlimited_Push_Notifications_By_Aalarapush_Loader
 {
     /**
      * The array of actions registered with WordPress.

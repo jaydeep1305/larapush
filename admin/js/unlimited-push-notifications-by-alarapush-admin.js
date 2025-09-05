@@ -32,7 +32,7 @@
   $(function () {
     async function sendNotificationByLaraPush(id) {
       var formData = new FormData();
-      formData.append('action', 'larapush_send_notification');
+      formData.append('action', 'alarapush_send_notification');
       formData.append('post_id', id);
 
       try {
@@ -58,14 +58,14 @@
 
       // get all children divs
       let postId = $(this).children('div').data().postId;
-      // #larapush-send-notification-btn
-      let messageBtn = $(this).find('#larapush-send-notification-btn');
+      // #alarapush-send-notification-btn
+      let messageBtn = $(this).find('#alarapush-send-notification-btn');
       messageBtn.text('Sending...');
       let notificationSentResult = await sendNotificationByLaraPush(postId);
       messageBtn.text(notificationSentResult);
     });
 
-    $('.larapush_send_notification').on('click', async function (e) {
+    $('.alarapush_send_notification').on('click', async function (e) {
       e.preventDefault();
 
       let postId = $(this).data('post-id');

@@ -2,18 +2,18 @@
 /**
  * Define the internationalization functionality.
  *
- * @link       https://larapush.com
+ * @link       https://alarapush.com
  * @since      1.0.0
  *
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Unlimited_Push_Notifications_By_Larapush
- * @subpackage Unlimited_Push_Notifications_By_Larapush/includes
- * @author     LaraPush <support@larapush.com>
+ * @package    Unlimited_Push_Notifications_By_Aalarapush
+ * @subpackage Unlimited_Push_Notifications_By_Aalarapush/includes
+ * @author     LaraPush <support@alarapush.com>
  */
-class Unlimited_Push_Notifications_By_Larapush_i18n
+class Unlimited_Push_Notifications_By_Aalarapush_i18n
 {
     /**
      * Load the plugin text domain for translation.
@@ -23,7 +23,7 @@ class Unlimited_Push_Notifications_By_Larapush_i18n
     public function load_plugin_textdomain()
     {
         load_plugin_textdomain(
-            'unlimited-push-notifications-by-larapush',
+            'unlimited-push-notifications-by-alarapush',
             false,
             dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
         );

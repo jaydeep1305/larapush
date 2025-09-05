@@ -1,4 +1,4 @@
-.larapush-btn {
+.alarapush-btn {
     height: 50px;
     width: 300px;
     font-family: Arial, Helvetica, sans-serif !important;
@@ -20,7 +20,7 @@ amp-web-push-widget{
     box-shadow: 0 15px 35px -5px rgb(0 0 0 / 25%)
 }
 
-.larapush-btn-disabled {
+.alarapush-btn-disabled {
     height: 50px;
     width: 300px;
     font-family: Arial, Helvetica, sans-serif !important;
@@ -39,6 +39,6 @@ amp-web-push-widget{
     box-shadow: 0 15px 35px -5px rgb(0 0 0 / 25%);
 }
 
-div.larapush_cover {
+div.alarapush_cover {
     text-align: center;
 }

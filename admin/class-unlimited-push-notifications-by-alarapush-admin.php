@@ -3,17 +3,17 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://larapush.com
+ * @link       https://alarapush.com
  * @since      1.0.0
  *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Unlimited_Push_Notifications_By_Larapush
- * @subpackage Unlimited_Push_Notifications_By_Larapush/admin
- * @author     LaraPush <support@larapush.com>
+ * @package    Unlimited_Push_Notifications_By_Aalarapush
+ * @subpackage Unlimited_Push_Notifications_By_Aalarapush/admin
+ * @author     LaraPush <support@alarapush.com>
  */
-class Unlimited_Push_Notifications_By_Larapush_Admin
+class Unlimited_Push_Notifications_By_Aalarapush_Admin
 {
     /**
      * The ID of this plugin.
@@ -54,30 +54,30 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
     public function add_menu_pages()
     {
         add_menu_page(
-            'Unlimited Push Notifications by Larapush',
+            'Unlimited Push Notifications by Aalarapush',
             'LaraPush',
             'read',
-            'unlimited-push-notifications-by-larapush',
+            'unlimited-push-notifications-by-alarapush',
             [$this, 'render_menu_page'],
             plugin_dir_url(__FILE__) . 'images/icon.svg',
             25
         );
 
         add_submenu_page(
-            'unlimited-push-notifications-by-larapush',
-            'Unlimited Push Notifications by Larapush',
-            'Larapush Panel',
+            'unlimited-push-notifications-by-alarapush',
+            'Unlimited Push Notifications by Aalarapush',
+            'Aalarapush Panel',
             'manage_options',
-            'unlimited-push-notifications-by-larapush',
+            'unlimited-push-notifications-by-alarapush',
             [$this, 'render_menu_page']
         );
 
         add_submenu_page(
-            'unlimited-push-notifications-by-larapush',
-            'Unlimited Push Notifications by Larapush',
+            'unlimited-push-notifications-by-alarapush',
+            'Unlimited Push Notifications by Aalarapush',
             'Settings',
             'manage_options',
-            'unlimited-push-notifications-by-larapush-settings',
+            'unlimited-push-notifications-by-alarapush-settings',
             [$this, 'render_settings_page']
         );
     }
@@ -89,13 +89,13 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
      */
     public function enqueue_scripts()
     {
-        if (!Unlimited_Push_Notifications_By_Larapush_Admin_Helper::checkIfUserHasAccess()) {
+        if (!Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::checkIfUserHasAccess()) {
             return;
         }
 
         wp_enqueue_script(
             $this->plugin_name,
-            plugin_dir_url(__FILE__) . 'js/unlimited-push-notifications-by-larapush-admin.js',
+            plugin_dir_url(__FILE__) . 'js/unlimited-push-notifications-by-alarapush-admin.js',
             ['jquery'],
             $this->version,
             false
@@ -111,35 +111,35 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
      */
     public function admin_notices()
     {
-        if (!Unlimited_Push_Notifications_By_Larapush_Admin_Helper::checkIfUserHasAccess()) {
+        if (!Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::checkIfUserHasAccess()) {
             return;
         }
 
-        $error_msg = get_transient('larapush_error');
+        $error_msg = get_transient('alarapush_error');
         if ($error_msg) {
             echo '<div class="notice notice-error is-dismissible"><p><strong>' .
                 esc_html($error_msg) .
                 '</strong></p></div>';
-            delete_transient('larapush_error');
+            delete_transient('alarapush_error');
         }
-        $success_msg = get_transient('larapush_success');
+        $success_msg = get_transient('alarapush_success');
         if ($success_msg) {
             echo '<div class="notice notice-success is-dismissible"><p><strong>' .
                 esc_html($success_msg) .
                 '</strong></p></div>';
-            delete_transient('larapush_success');
+            delete_transient('alarapush_success');
         }
 
-        $setup_done = get_option('unlimited_push_notifications_by_larapush_panel_integration_tried', false);
+        $setup_done = get_option('unlimited_push_notifications_by_alarapush_panel_integration_tried', false);
         if (!$setup_done) {
             if (
                 !isset($_GET['page']) ||
-                (sanitize_text_field($_GET['page']) != 'unlimited-push-notifications-by-larapush-settings' &&
-                    sanitize_text_field($_GET['page']) != 'unlimited-push-notifications-by-larapush')
+                (sanitize_text_field($_GET['page']) != 'unlimited-push-notifications-by-alarapush-settings' &&
+                    sanitize_text_field($_GET['page']) != 'unlimited-push-notifications-by-alarapush')
             ) { ?>
                 <div class="notice notice-warning is-dismissible">
-                    <p><strong>Larapush</strong> is not setup yet. <a href="<?php echo admin_url(
-                        'admin.php?page=unlimited-push-notifications-by-larapush-settings'
+                    <p><strong>Aalarapush</strong> is not setup yet. <a href="<?php echo admin_url(
+                        'admin.php?page=unlimited-push-notifications-by-alarapush-settings'
                     ); ?>">Click here</a> to setup.</p>
                 </div>
                 <?php }
@@ -153,16 +153,16 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
      */
     public function render_menu_page()
     {
-        # Check if Larapush is connected, if not redirect to settings page using javascript
-        $connection = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::checkConnection();
+        # Check if Aalarapush is connected, if not redirect to settings page using javascript
+        $connection = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::checkConnection();
         if ($connection == false) {
-            $redirect_url = admin_url('admin.php?page=unlimited-push-notifications-by-larapush-settings'); ?>
+            $redirect_url = admin_url('admin.php?page=unlimited-push-notifications-by-alarapush-settings'); ?>
 			<script>
 				window.location.href = '<?php echo esc_url($redirect_url); ?>';
 			</script>
 			<?php
         }
-        include 'partials/unlimited-push-notifications-by-larapush-admin-display.php';
+        include 'partials/unlimited-push-notifications-by-alarapush-admin-display.php';
     }
 
     /**
@@ -172,7 +172,7 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
      */
     public function render_settings_page()
     {
-        include 'partials/unlimited-push-notifications-by-larapush-admin-settings.php';
+        include 'partials/unlimited-push-notifications-by-alarapush-admin-settings.php';
     }
 
     /**
@@ -180,16 +180,16 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
      *
      * @since 1.0.10
      */
-    public function larapush_connect()
+    public function alarapush_connect()
     {
         // Check if nonce is valid
-        if (!wp_verify_nonce(sanitize_text_field($_POST['_wpnonce']), 'larapush_connect')) {
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseErrorAndRedirect('Invalid nonce.');
+        if (!wp_verify_nonce(sanitize_text_field($_POST['_wpnonce']), 'alarapush_connect')) {
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseErrorAndRedirect('Invalid nonce.');
         }
 
         // Check if user has permission to access this page
         if (!current_user_can('manage_options')) {
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseErrorAndRedirect(
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseErrorAndRedirect(
                 'Only Admins can edit settings.'
             );
         }
@@ -197,32 +197,32 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
         // Check if panel url is valid
         if (
             !filter_var(
-                sanitize_text_field($_POST['unlimited_push_notifications_by_larapush_panel_url']),
+                sanitize_text_field($_POST['unlimited_push_notifications_by_alarapush_panel_url']),
                 FILTER_VALIDATE_URL
             )
         ) {
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseErrorAndRedirect('Invalid panel url.');
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseErrorAndRedirect('Invalid panel url.');
         }
 
         // Check if panel email is valid
         if (
             !filter_var(
-                sanitize_text_field($_POST['unlimited_push_notifications_by_larapush_panel_email']),
+                sanitize_text_field($_POST['unlimited_push_notifications_by_alarapush_panel_email']),
                 FILTER_VALIDATE_EMAIL
             )
         ) {
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseErrorAndRedirect('Invalid panel email.');
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseErrorAndRedirect('Invalid panel email.');
         }
 
         // Get the input password and check if it's masked
-        $input_password = sanitize_text_field($_POST['unlimited_push_notifications_by_larapush_panel_password']);
-        $password_length = isset($_POST['unlimited_push_notifications_by_larapush_panel_password_length'])
-            ? intval($_POST['unlimited_push_notifications_by_larapush_panel_password_length'])
+        $input_password = sanitize_text_field($_POST['unlimited_push_notifications_by_alarapush_panel_password']);
+        $password_length = isset($_POST['unlimited_push_notifications_by_alarapush_panel_password_length'])
+            ? intval($_POST['unlimited_push_notifications_by_alarapush_panel_password_length'])
             : 0;
 
         // Get existing password from the database
-        $existing_password_encoded = get_option('unlimited_push_notifications_by_larapush_panel_password', '');
-        $existing_password = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::decode($existing_password_encoded);
+        $existing_password_encoded = get_option('unlimited_push_notifications_by_alarapush_panel_password', '');
+        $existing_password = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::decode($existing_password_encoded);
 
         // Check if the password is masked (all asterisks and matches the length of stored password)
         if (
@@ -236,12 +236,12 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
 
         // Check if we have a valid password
         if (empty($input_password)) {
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseErrorAndRedirect('Invalid panel password.');
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseErrorAndRedirect('Invalid panel password.');
         }
 
-        // Check if access is selected, unlimited_push_notifications_by_larapush_access
-        if (isset($_POST['unlimited_push_notifications_by_larapush_access'])) {
-            $access = $_POST['unlimited_push_notifications_by_larapush_access'];
+        // Check if access is selected, unlimited_push_notifications_by_alarapush_access
+        if (isset($_POST['unlimited_push_notifications_by_alarapush_access'])) {
+            $access = $_POST['unlimited_push_notifications_by_alarapush_access'];
             if (is_array($access) && (in_array('editor', $access) || in_array('author', $access))) {
                 $accessAllowed = [];
                 foreach ($access as $role) {
@@ -249,102 +249,102 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
                         $accessAllowed[] = $role;
                     }
                 }
-                update_option('unlimited_push_notifications_by_larapush_access', $accessAllowed);
+                update_option('unlimited_push_notifications_by_alarapush_access', $accessAllowed);
             } else {
-                update_option('unlimited_push_notifications_by_larapush_access', []);
+                update_option('unlimited_push_notifications_by_alarapush_access', []);
             }
         } else {
-            update_option('unlimited_push_notifications_by_larapush_access', []);
+            update_option('unlimited_push_notifications_by_alarapush_access', []);
         }
 
         // Update options
         update_option(
-            'unlimited_push_notifications_by_larapush_panel_url',
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::encode(
-                sanitize_text_field($_POST['unlimited_push_notifications_by_larapush_panel_url'])
+            'unlimited_push_notifications_by_alarapush_panel_url',
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::encode(
+                sanitize_text_field($_POST['unlimited_push_notifications_by_alarapush_panel_url'])
             )
         );
         update_option(
-            'unlimited_push_notifications_by_larapush_panel_email',
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::encode(
-                sanitize_text_field($_POST['unlimited_push_notifications_by_larapush_panel_email'])
+            'unlimited_push_notifications_by_alarapush_panel_email',
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::encode(
+                sanitize_text_field($_POST['unlimited_push_notifications_by_alarapush_panel_email'])
             )
         );
         update_option(
-            'unlimited_push_notifications_by_larapush_panel_password',
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::encode($input_password)
+            'unlimited_push_notifications_by_alarapush_panel_password',
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::encode($input_password)
         );
         update_option(
-            'unlimited_push_notifications_by_larapush_enable_push_notifications',
-            isset($_POST['unlimited_push_notifications_by_larapush_enable_push_notifications']) ? 1 : 0
+            'unlimited_push_notifications_by_alarapush_enable_push_notifications',
+            isset($_POST['unlimited_push_notifications_by_alarapush_enable_push_notifications']) ? 1 : 0
         );
 
         update_option(
-            'unlimited_push_notifications_by_larapush_push_on_publish',
-            isset($_POST['unlimited_push_notifications_by_larapush_push_on_publish'])
-                ? ($_POST['unlimited_push_notifications_by_larapush_push_on_publish'] == 0
+            'unlimited_push_notifications_by_alarapush_push_on_publish',
+            isset($_POST['unlimited_push_notifications_by_alarapush_push_on_publish'])
+                ? ($_POST['unlimited_push_notifications_by_alarapush_push_on_publish'] == 0
                     ? 0
                     : 1)
                 : 0
         );
 
-        if (!Unlimited_Push_Notifications_By_Larapush_Admin_Helper::canShowPushOnPublishDelay()) {
+        if (!Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::canShowPushOnPublishDelay()) {
             // If user doesn't have access, force these options to be disabled
-            update_option('unlimited_push_notifications_by_larapush_push_on_publish_delay', 0);
-            update_option('unlimited_push_notifications_by_larapush_push_on_publish_for_webstories', 0);
+            update_option('unlimited_push_notifications_by_alarapush_push_on_publish_delay', 0);
+            update_option('unlimited_push_notifications_by_alarapush_push_on_publish_for_webstories', 0);
         } else {
             update_option(
-                'unlimited_push_notifications_by_larapush_push_on_publish_delay',
-                isset($_POST['unlimited_push_notifications_by_larapush_push_on_publish_delay'])
-                    ? sanitize_text_field($_POST['unlimited_push_notifications_by_larapush_push_on_publish_delay'])
+                'unlimited_push_notifications_by_alarapush_push_on_publish_delay',
+                isset($_POST['unlimited_push_notifications_by_alarapush_push_on_publish_delay'])
+                    ? sanitize_text_field($_POST['unlimited_push_notifications_by_alarapush_push_on_publish_delay'])
                     : 0
             );
             update_option(
-                'unlimited_push_notifications_by_larapush_push_on_publish_for_webstories',
-                isset($_POST['unlimited_push_notifications_by_larapush_push_on_publish_for_webstories']) ? 1 : 0
+                'unlimited_push_notifications_by_alarapush_push_on_publish_for_webstories',
+                isset($_POST['unlimited_push_notifications_by_alarapush_push_on_publish_for_webstories']) ? 1 : 0
             );
         }
 
-        if (get_option('unlimited_push_notifications_by_larapush_panel_integration_tried', false) == true) {
+        if (get_option('unlimited_push_notifications_by_alarapush_panel_integration_tried', false) == true) {
             // Array of Domains come from Select tag
             $domains_selected = [];
-            if (isset($_POST['unlimited_push_notifications_by_larapush_panel_domains_selected'])) {
+            if (isset($_POST['unlimited_push_notifications_by_alarapush_panel_domains_selected'])) {
                 // check if array
-                if (is_array($_POST['unlimited_push_notifications_by_larapush_panel_domains_selected'])) {
+                if (is_array($_POST['unlimited_push_notifications_by_alarapush_panel_domains_selected'])) {
                     // loop through array
-                    foreach ($_POST['unlimited_push_notifications_by_larapush_panel_domains_selected'] as $domain) {
+                    foreach ($_POST['unlimited_push_notifications_by_alarapush_panel_domains_selected'] as $domain) {
                         $domains_selected[] = sanitize_text_field($domain);
                     }
                 }
             }
-            update_option('unlimited_push_notifications_by_larapush_panel_domains_selected', $domains_selected);
+            update_option('unlimited_push_notifications_by_alarapush_panel_domains_selected', $domains_selected);
 
             update_option(
-                'unlimited_push_notifications_by_larapush_add_code_for_amp',
-                isset($_POST['unlimited_push_notifications_by_larapush_add_code_for_amp']) ? 1 : 0
+                'unlimited_push_notifications_by_alarapush_add_code_for_amp',
+                isset($_POST['unlimited_push_notifications_by_alarapush_add_code_for_amp']) ? 1 : 0
             );
 
             // Array of AMP Code Location come from Select tag
             $amp_code_location = [];
-            if (isset($_POST['unlimited_push_notifications_by_larapush_amp_code_location'])) {
+            if (isset($_POST['unlimited_push_notifications_by_alarapush_amp_code_location'])) {
                 // check if array
-                if (is_array($_POST['unlimited_push_notifications_by_larapush_amp_code_location'])) {
+                if (is_array($_POST['unlimited_push_notifications_by_alarapush_amp_code_location'])) {
                     // loop through array
-                    foreach ($_POST['unlimited_push_notifications_by_larapush_amp_code_location'] as $location) {
+                    foreach ($_POST['unlimited_push_notifications_by_alarapush_amp_code_location'] as $location) {
                         $amp_code_location[] = sanitize_text_field($location);
                     }
                 }
             }
-            update_option('unlimited_push_notifications_by_larapush_amp_code_location', $amp_code_location);
+            update_option('unlimited_push_notifications_by_alarapush_amp_code_location', $amp_code_location);
         }
 
         update_option(
-            'unlimited_push_notifications_by_larapush_configure_pwa_ios',
-            isset($_POST['unlimited_push_notifications_by_larapush_configure_pwa_ios']) ? 1 : 0
+            'unlimited_push_notifications_by_alarapush_configure_pwa_ios',
+            isset($_POST['unlimited_push_notifications_by_alarapush_configure_pwa_ios']) ? 1 : 0
         );
 
         // Redirect to settings page
-        wp_redirect(admin_url('admin.php?page=unlimited-push-notifications-by-larapush-settings'));
+        wp_redirect(admin_url('admin.php?page=unlimited-push-notifications-by-alarapush-settings'));
         exit();
     }
 
@@ -356,23 +356,23 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
     public function code_integration()
     {
         // Check if nonce is valid
-        if (!wp_verify_nonce(sanitize_text_field($_POST['_wpnonce']), 'larapush_code_integration')) {
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseErrorAndRedirect('Invalid nonce.');
+        if (!wp_verify_nonce(sanitize_text_field($_POST['_wpnonce']), 'alarapush_code_integration')) {
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseErrorAndRedirect('Invalid nonce.');
         }
 
         # Integrating code here
-        $integration_done = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::codeIntegration();
+        $integration_done = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::codeIntegration();
 
         # If Integration is successful, redirect to settings page else show error
         if ($integration_done == true) {
-            Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseSuccessAndRedirect('Settings saved.');
+            Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseSuccessAndRedirect('Settings saved.');
         } else {
-            if (count(get_settings_errors('unlimited-push-notifications-by-larapush-settings'))) {
-                Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseErrorAndRedirect(
-                    get_settings_errors('unlimited-push-notifications-by-larapush-settings')[0]['message']
+            if (count(get_settings_errors('unlimited-push-notifications-by-alarapush-settings'))) {
+                Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseErrorAndRedirect(
+                    get_settings_errors('unlimited-push-notifications-by-alarapush-settings')[0]['message']
                 );
             } else {
-                Unlimited_Push_Notifications_By_Larapush_Admin_Helper::responseErrorAndRedirect(
+                Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::responseErrorAndRedirect(
                     'Code integration failed.'
                 );
             }
@@ -394,28 +394,28 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
             return;
         }
 
-        $isPushOnPublishDelayEnabled = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::canShowPushOnPublishDelay();
+        $isPushOnPublishDelayEnabled = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::canShowPushOnPublishDelay();
 
         if ($new_status == 'publish') {
             if ($post->post_type == 'post') {
-                if (get_option('unlimited_push_notifications_by_larapush_push_on_publish', false)) {
-                    $delay = get_option('unlimited_push_notifications_by_larapush_push_on_publish_delay', 0);
+                if (get_option('unlimited_push_notifications_by_alarapush_push_on_publish', false)) {
+                    $delay = get_option('unlimited_push_notifications_by_alarapush_push_on_publish_delay', 0);
                     if ($delay > 0 && $isPushOnPublishDelayEnabled) {
                         wp_schedule_single_event(
                             time() + $delay * 60,
-                            'unlimited_push_notifications_by_larapush_send_scheduled_notification',
+                            'unlimited_push_notifications_by_alarapush_send_scheduled_notification',
                             [$post->ID]
                         );
                     } else {
-                        $notification = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::send_notification(
+                        $notification = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::send_notification(
                             $post->ID
                         );
                     }
                 }
             }
             if ($post->post_type == 'web-story') {
-                if (get_option('unlimited_push_notifications_by_larapush_push_on_publish_for_webstories', false)) {
-                    $notification = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::send_notification($post->ID);
+                if (get_option('unlimited_push_notifications_by_alarapush_push_on_publish_for_webstories', false)) {
+                    $notification = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::send_notification($post->ID);
                 }
             }
         }
@@ -428,7 +428,7 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
      */
     public function send_scheduled_notification($post_id)
     {
-        $notification = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::send_notification($post_id);
+        $notification = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::send_notification($post_id);
     }
 
     /**
@@ -439,22 +439,22 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
     public function add_post_row_actions($actions, $post)
     {
         if (
-            !Unlimited_Push_Notifications_By_Larapush_Admin_Helper::checkIfUserHasAccess() ||
+            !Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::checkIfUserHasAccess() ||
             $post->post_status != 'publish'
         ) {
             return $actions;
         }
 
         if ($post->post_type == 'post' or $post->post_type == 'web-story') {
-            $plan = get_option('unlimited_push_notifications_by_larapush_panel_plan', 'premium');
+            $plan = get_option('unlimited_push_notifications_by_alarapush_panel_plan', 'premium');
             if ($plan == 'pro' || $plan == 'premium') {
                 $actions['send_notification'] =
-                    '<a href="#" class="larapush_send_notification" data-post-id="' .
+                    '<a href="#" class="alarapush_send_notification" data-post-id="' .
                     $post->ID .
                     '">Send Notification</a>';
             } else {
                 $actions['send_notification'] =
-                    '<span onclick="window.open(\'https://larapush.com/upgrade\', \'_blank\')" style="cursor: pointer;">Send Notification</span>';
+                    '<span onclick="window.open(\'https://alarapush.com/upgrade\', \'_blank\')" style="cursor: pointer;">Send Notification</span>';
             }
         }
         return $actions;
@@ -473,7 +473,7 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
             $post = get_post($post_id);
 
             if (
-                !Unlimited_Push_Notifications_By_Larapush_Admin_Helper::checkIfUserHasAccess() ||
+                !Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::checkIfUserHasAccess() ||
                 $post->post_status != 'publish'
             ) {
                 return;
@@ -483,7 +483,7 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
                 '<div style="display: flex;align-items: center;align-content: center;"><div style="display: flex;align-items: center;align-content: center;opacity: 0.8;"><img src="' .
                 plugin_dir_url(__FILE__) .
                 'images/icon.svg' .
-                '"></div>&nbsp;&nbsp;<span id="larapush-send-notification-btn">Send Notification</span></div>';
+                '"></div>&nbsp;&nbsp;<span id="alarapush-send-notification-btn">Send Notification</span></div>';
             $title = $icon_html;
 
             $args = [
@@ -506,14 +506,14 @@ class Unlimited_Push_Notifications_By_Larapush_Admin
      *
      * @since 1.0.0
      */
-    public function larapush_send_notification()
+    public function alarapush_send_notification()
     {
-        if (!Unlimited_Push_Notifications_By_Larapush_Admin_Helper::checkIfUserHasAccess()) {
+        if (!Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::checkIfUserHasAccess()) {
             return;
         }
 
         $id = sanitize_text_field($_POST['post_id']);
-        $notification = Unlimited_Push_Notifications_By_Larapush_Admin_Helper::send_notification($id);
+        $notification = Unlimited_Push_Notifications_By_Aalarapush_Admin_Helper::send_notification($id);
         if ($notification) {
             die(
                 json_encode([
